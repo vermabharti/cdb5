@@ -92,6 +92,13 @@ class _PageState extends State<TabConfig> {
     }
   }
 
+  void _getfunction({String flid, String ttid}) {
+    setState(() {
+      _fid = flid;
+      // _tabid = ttid;
+    });
+  }
+
   @override
   void initState() {
     dashboardconfiguration();
@@ -102,70 +109,77 @@ class _PageState extends State<TabConfig> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey,
-      height: 100,
-      child: FutureBuilder<dynamic>(
-        future: tabconfiguration(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: ClampingScrollPhysics(),
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index) {
-                List tabl = snapshot.data[index];
-                return GestureDetector(
-                    onTap: () async {
-                      setState(() {
-                        _enabled = true;
-                        _fid = tabl[3];
-                        ParaConfiguration(flid: _fid);
-                      });
-                    },
-                    child: Container(
-                        child: Column(children: [
-                      Container(
-                        width: 35.0,
-                        height: 35.0,
-                        margin: EdgeInsets.all(10),
-                        padding: EdgeInsets.zero,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(200.0),
-                          border: Border.all(
-                              width: 1.0,
-                              style: BorderStyle.solid,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                          color: Colors.red[100],
-                        ),
-                        child: Center(
-                          child: IconButton(
-                              padding: EdgeInsets.zero,
-                              iconSize: 11,
-                              icon: Icon(FontAwesomeIcons.briefcaseMedical,
-                                  color: Color(0xff000000)),
-                              onPressed: () async {}),
-                        ),
-                      ),
-                      Container(
-                          width: 50,
-                          child: Text(
-                            tabl[2],
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(fontSize: 12, color: Colors.black),
-                          ))
-                    ])));
-              },
-            );
-          } else if (snapshot.hasError) {
-            return snapshot.error;
-          }
-          return new Center(
-            child: new CircularProgressIndicator(),
-          );
-        },
-      ),
-    );
+        color: Colors.grey,
+        height: 100,
+        child: Column(children: [
+          SizedBox(
+              height: 200,
+              child: FutureBuilder<dynamic>(
+                future: tabconfiguration(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      physics: ClampingScrollPhysics(),
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        List tabl = snapshot.data[index];
+                        return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _enabled = true;
+                                _fid = tabl[3];
+                              });
+                              _getfunction(flid: _fid);
+                            },
+                            child: Container(
+                                child: Column(children: [
+                              Container(
+                                width: 35.0,
+                                height: 35.0,
+                                margin: EdgeInsets.all(10),
+                                padding: EdgeInsets.zero,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(200.0),
+                                  border: Border.all(
+                                      width: 1.0,
+                                      style: BorderStyle.solid,
+                                      color: Color.fromARGB(255, 0, 0, 0)),
+                                  color: Colors.red[100],
+                                ),
+                                child: Center(
+                                  child: IconButton(
+                                      padding: EdgeInsets.zero,
+                                      iconSize: 11,
+                                      icon: Icon(
+                                          FontAwesomeIcons.briefcaseMedical,
+                                          color: Color(0xff000000)),
+                                      onPressed: () async {}),
+                                ),
+                              ),
+                              Container(
+                                  width: 50,
+                                  child: Text(
+                                    tabl[2],
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                        fontSize: 12, color: Colors.black),
+                                  ))
+                            ])));
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return snapshot.error;
+                  }
+                  return new Center(
+                    child: new CircularProgressIndicator(),
+                  );
+                },
+              )),
+          _enabled != true ? ParaConfiguration(flid: _fid) : Text('')
+        ]));
   }
 }

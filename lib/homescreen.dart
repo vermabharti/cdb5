@@ -110,8 +110,9 @@ class _PageState extends State<Home> {
               Text("CENTRAL DASHBAORD", style: TextStyle(color: Colors.black)),
         ),
         body: SingleChildScrollView(
-          child: Configuration(),
-          // child: Column(children: [TabConfig(), ParaConfiguration()])
+            child: Configuration(),
+          //   child: Column(children: [
+          // TabConfig(),
         ));
   }
 }

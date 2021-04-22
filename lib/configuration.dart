@@ -117,7 +117,6 @@ class _PageState extends State<Configuration> {
           var user = ServiceName.fromJson(json.decode(widgetlist[i][1])[0]);
           setState(() {
             servicename = '${user.webserviceName}';
-            print('dataser ${}');
           });
           final prefs = await SharedPreferences.getInstance();
           prefs.setString("servicename", servicename);
