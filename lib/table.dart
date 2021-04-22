@@ -1,5 +1,6 @@
- 
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+
+//Table Configuration
 
 class TableDetail extends StatefulWidget {
   final List head;
@@ -24,6 +25,7 @@ class _MyPageState extends State<TableDetail> {
     super.initState();
   }
 
+// Table Content
   Widget build(BuildContext context) {
     List list = widget.head;
     List value = widget.data;

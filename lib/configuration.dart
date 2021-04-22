@@ -52,6 +52,7 @@ class _PageState extends State<Configuration> {
 
   var selectedValue;
 
+// Current Date Method
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -64,6 +65,7 @@ class _PageState extends State<Configuration> {
       });
   }
 
+// Tab Configuration Method
   Future<dynamic> _tabconfiguration() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
@@ -100,6 +102,7 @@ class _PageState extends State<Configuration> {
     }
   }
 
+// Widget Configuration Method
   Future<dynamic> _widgetConfig() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
@@ -142,6 +145,7 @@ class _PageState extends State<Configuration> {
     }
   }
 
+// Parameter Configuration Method
   Future<dynamic> _parameterconfiguration() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
@@ -186,6 +190,7 @@ class _PageState extends State<Configuration> {
     }
   }
 
+  // Filters Dropdown method
   Future<dynamic> getfilterdropdownType({String weburl}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _id = (prefs.getString('username') ?? "");
@@ -240,6 +245,7 @@ class _PageState extends State<Configuration> {
     }
   }
 
+// FETCH GRAPH/TABLE DATA
   Future<List<dynamic>> _getdatafromwidget() async {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());

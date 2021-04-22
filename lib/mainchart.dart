@@ -13,7 +13,7 @@ class Chart extends StatefulWidget {
   _PageState createState() => new _PageState();
 }
 
-
+// Main Chart Widget
 class _PageState extends State<Chart> {
   List<String> _locations = ['Column Bar Graph', 'Line Graph'];
   String _selectedLocation = 'Column Bar Graph',

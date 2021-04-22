@@ -30,6 +30,7 @@ class _LineChartState extends State<LineChartEDL> {
   bool showAvg = false;
   String _id;
 
+  // Fetch Method
   Future<dynamic> _fetchMainMenu() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
@@ -73,6 +74,7 @@ class _LineChartState extends State<LineChartEDL> {
     return showDialog<void>(
         context: context,
         builder: (BuildContext context) {
+          // Full Screen rotation
           return RotatedBox(
               quarterTurns: 1,
               child: Hero(
@@ -378,6 +380,7 @@ class _LineChartState extends State<LineChartEDL> {
 
   @override
   Widget build(BuildContext context) {
+    // Linechart rotation
     return Stack(
       children: <Widget>[
         SingleChildScrollView(

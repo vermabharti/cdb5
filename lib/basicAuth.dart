@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/io_client.dart';
 
+// Basic Authentication
 String mobileusername = 'mobileUser';
 String mobilepassword = 'mob123';
 String basicAuth =
@@ -11,6 +12,7 @@ Map<String, String> headers = {
   'authorization': basicAuth
 };
 
+// SSL Certification
 bool trustSelfSigned = true;
 HttpClient httpClient = new HttpClient()
   ..badCertificateCallback =
@@ -18,7 +20,8 @@ HttpClient httpClient = new HttpClient()
 IOClient ioClient = new IOClient(httpClient);
 
 //BASE_URL
-const BASE_URL = 'https://cdashboard.dcservices.in/HISUtilities/services/restful/DataService/DATAJSON';
+const BASE_URL =
+    'https://cdashboard.dcservices.in/HISUtilities/services/restful/DataService/DATAJSON';
 
 //LOGIN_WEB_SERVICE
 const LOGIN_URL =
@@ -157,8 +160,8 @@ class UnknownException {
   UnknownException(this.message);
 }
 
-const UAT_DRUG_TYPE = "https://uatcdash.dcservices.in/HISUtilities/services/restful/DataService/DATAJSON/drugType";
+const UAT_DRUG_TYPE =
+    "https://uatcdash.dcservices.in/HISUtilities/services/restful/DataService/DATAJSON/drugType";
 
-const UAT_DRUG_Name = "https://uatcdash.dcservices.in/HISUtilities/services/restful/DataService/DATAJSON/drugName";
-
-
+const UAT_DRUG_Name =
+    "https://uatcdash.dcservices.in/HISUtilities/services/restful/DataService/DATAJSON/drugName";

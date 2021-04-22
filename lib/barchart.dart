@@ -36,6 +36,7 @@ class ChartTabState extends State<BarchartEDL> {
   final Color thirdBarColor = const Color(0xffffc478);
   final double width = 5;
 
+// Barchart Method 
   Future<List<dynamic>> _fetchMainMenu() async {
     String url;
     switch ('${widget.bhead}') {

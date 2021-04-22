@@ -15,6 +15,7 @@ class _MyPageState extends State<IsLoggedIn> {
     _loadUserInfo();
   }
 
+// IsLoggedIn method
   _loadUserInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _username = (prefs.getString('username') ?? "");

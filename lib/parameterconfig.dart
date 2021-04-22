@@ -34,10 +34,10 @@ class _PageState extends State<ParaConfiguration> {
   bool _enabled = false;
   final TextEditingController controllertext = TextEditingController();
   DateTime selectedDate = DateTime.now();
- 
 
   var selectedValue;
 
+// Date Method
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -50,6 +50,7 @@ class _PageState extends State<ParaConfiguration> {
       });
   }
 
+  // Parameter Configuartion
   Future<dynamic> _parameterconfiguration() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
@@ -88,6 +89,7 @@ class _PageState extends State<ParaConfiguration> {
     }
   }
 
+  // Dropdown filters
   Future<dynamic> getfilterdropdownType({String weburl}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _id = (prefs.getString('username') ?? "");
@@ -159,9 +161,7 @@ class _PageState extends State<ParaConfiguration> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          child: Text('Hello World')
-        ),
+        Container(child: Text('Hello World')),
       ],
     );
   }

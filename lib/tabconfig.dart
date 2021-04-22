@@ -22,6 +22,7 @@ class _PageState extends State<TabConfig> {
     });
   }
 
+// Dashboard Configuration Method
   Future<dynamic> dashboardconfiguration() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
@@ -56,6 +57,7 @@ class _PageState extends State<TabConfig> {
     }
   }
 
+// Tab Configuration Method
   Future<dynamic> tabconfiguration() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
@@ -107,6 +109,7 @@ class _PageState extends State<TabConfig> {
   }
 
   @override
+  // UI Rendering
   Widget build(BuildContext context) {
     return Container(
         color: Colors.grey,
