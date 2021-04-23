@@ -40,6 +40,7 @@ class Configuration extends StatefulWidget {
 class _PageState extends State<Configuration> {
   String agr,
       _fid,
+      _fname,
       combovalue,
       selectedcomboValue,
       paratype,
@@ -123,6 +124,7 @@ class _PageState extends State<Configuration> {
           });
           final prefs = await SharedPreferences.getInstance();
           prefs.setString("servicename", servicename);
+          print('service $servicename');
         }
         if (list["dataValue"] != null) {
           return widgetlist;
@@ -258,8 +260,14 @@ class _PageState extends State<Configuration> {
           "filterIds": _fid.split(","),
           "filterValues": ['21191037']
         });
+        var url;
+        if ('${prefs.getString('servicename') ?? ""}' == 'AnnualDemand') {
+          url = 'StateWiseActiveFacilities';
+        } else {
+          url = 'RateContractService';
+        }
         Response response = await ioClient.post(
-            'https://uatcdash.dcservices.in/HISUtilities/services/restful/DataService/DATAJSON/${prefs.getString('servicename') ?? ""}',
+            'https://uatcdash.dcservices.in/HISUtilities/services/restful/DataService/DATAJSON/$url',
             headers: headers,
             body: formData);
         if (response.statusCode == 200) {
@@ -293,10 +301,11 @@ class _PageState extends State<Configuration> {
     });
   }
 
-  void _getfunction({String flid, String ttid}) {
+  void _getfunction({String flid, String ttid, String fname}) {
     setState(() {
       _fid = flid;
       _tabid = ttid;
+      _fname = fname;
     });
     _parameterconfiguration();
     _widgetConfig();
@@ -308,6 +317,7 @@ class _PageState extends State<Configuration> {
     _tabconfiguration();
     _widgetConfig();
     super.initState();
+    
   }
 
   @override
@@ -334,8 +344,9 @@ class _PageState extends State<Configuration> {
                             _enabled = true;
                             _fid = tabl[3];
                             _tabid = tabl[0];
+                            _fname = tabl[2];
                           });
-                          _getfunction(flid: _fid, ttid: _tabid);
+                          _getfunction(flid: _fid, ttid: _tabid, fname: _fname);
                         },
                         child: Container(
                             child: Column(children: [
